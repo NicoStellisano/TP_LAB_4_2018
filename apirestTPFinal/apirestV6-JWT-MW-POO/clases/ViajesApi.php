@@ -115,7 +115,7 @@ class ViajesApi extends Viajes
         $consulta->bindValue(':distancia', $distancia);
         $consulta->bindValue(':precio', $precio);
         $consulta->bindValue(':cantidad',$cantidad);
-        $consulta->bindValue(':horario', $horario);
+        $consulta->bindValue(':horario',date ("Y-m-d H:i:s", strtotime($horario)));
         $consulta->bindValue(':estado', $estado);
         $consulta->bindValue(':legajoRemisero', $legajoRemisero);
         $consulta->bindValue(':idVehiculo', $idVehiculo);
@@ -123,7 +123,7 @@ class ViajesApi extends Viajes
 
         $consulta->execute();	
 
-        $objDelaRespuesta->respuesta="viaje actualizado correctamente";
+        $objDelaRespuesta->respuesta=$horario;
        return $response->withJson($objDelaRespuesta, 200);
    }
    public function ActualizarViaje2($request, $response, $args) {
