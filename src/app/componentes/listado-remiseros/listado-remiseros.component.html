@@ -1,0 +1,67 @@
+<ng4-loading-spinner> </ng4-loading-spinner>
+
+<div class="container">
+<h1>Empleados </h1>
+<table class='table table-hover table-fixed'>
+  <thead>
+    <tr>
+      <th>Legajo</th>
+      <th>Nombre</th>
+      <th>Nacimiento</th>
+      <th>Sexo</th>
+      <th>Estado</th>
+      <th>Foto Empleado</th>
+      <th>Foto Vehiculo</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let usuario of listaUsuarios" >
+    <tr *ngIf="usuario.estado == 1" style="background-color: blue">
+      <td>{{usuario.legajo}} </td> 
+      <td>{{usuario.nombre}} </td>
+      <td>{{usuario.fechaNacimiento}}</td>
+      <td>{{usuario.sexo}}</td>
+      <td>En espera de contrato</td>
+      <td><img  style="width:100px;height:100px" class='fotoGrilla'  src="https://apistellisano.000webhostapp.com/apirestTPFinal/apirestV6-JWT-MW-POO/assets/usuarios/{{usuario.foto}}" /></td>
+      <td *ngIf="usuario.vehiculo.foto != null && usuario.vehiculo.estado==0"><img  style="width:100px;height:100px" class='fotoGrilla'  src="https://apistellisano.000webhostapp.com/apirestTPFinal/apirestV6-JWT-MW-POO/assets//vehiculos/{{usuario.vehiculo.foto}}" /></td>
+      <td *ngIf="usuario.vehiculo.foto == null || usuario.vehiculo.estado==1">Sin Vehiculo</td>
+      <td></td>
+      <td><button class="btn btn-info" (click)="Contratar(usuario.legajo)" style="width: 100%">Contratar Empleado</button></td>
+    </tr> 
+    <tr *ngIf="usuario.estado == 2" style="background-color: green">
+      <td>{{usuario.legajo}} </td> 
+      <td>{{usuario.nombre}} </td>
+      <td>{{usuario.fechaNacimiento}}</td>
+      <td>{{usuario.sexo}}</td>
+      <td>Disponible</td>
+      <td><img  style="width:100px;height:100px" class='fotoGrilla'  src="https://apistellisano.000webhostapp.com/apirestTPFinal/apirestV6-JWT-MW-POO/assets/usuarios/{{usuario.foto}}" /></td>
+      <td *ngIf="usuario.vehiculo.foto != null && usuario.vehiculo.estado==0"><img  style="width:100px;height:100px" class='fotoGrilla'  src="https://apistellisano.000webhostapp.com/apirestTPFinal/apirestV6-JWT-MW-POO/assets//vehiculos/{{usuario.vehiculo.foto}}" /></td>
+      <td *ngIf="usuario.vehiculo.foto == null || usuario.vehiculo.estado==1">Sin Vehiculo</td>
+      <td><button class="btn btn-info" (click)="modal(usuario)" style="width: 100%">Datos</button></td>
+      <td><button class="btn btn-danger" (click)="Desabilitar(usuario.legajo)" style="width: 100%">Inhabilitar</button></td>
+    </tr> 
+    <tr *ngIf="usuario.estado == 3" style="background-color: red">
+      <td>{{usuario.legajo}} </td> 
+      <td>{{usuario.nombre}} </td>
+      <td>{{usuario.fechaNacimiento}}</td>
+      <td>{{usuario.sexo}}</td>
+      <td>Suspendido</td>
+      <td><img  style="width:100px;height:100px" class='fotoGrilla'  src="https://apistellisano.000webhostapp.com/apirestTPFinal/apirestV6-JWT-MW-POO/assets/usuarios/{{usuario.foto}}" /></td>
+      <td *ngIf="usuario.vehiculo.foto != null && usuario.vehiculo.estado==0"><img  style="width:100px;height:100px" class='fotoGrilla'  src="https://apistellisano.000webhostapp.com/apirestTPFinal/apirestV6-JWT-MW-POO/assets//vehiculos/{{usuario.vehiculo.foto}}" /></td>
+      <td *ngIf="usuario.vehiculo.foto == null || usuario.vehiculo.estado==1">Sin Vehiculo</td>
+      <td></td>
+      <td><button class="btn btn-success" (click)="Habilitar(usuario.legajo)" style="width: 100%">Habilitar Empleado</button></td>
+    </tr>     
+  </tbody>
+</table>
+
+</div>
+
+
+<div id="id01" class="modal">
+    <div class="modal-content">
+     <app-horarios></app-horarios>
+     <button type="button"  onclick="document.getElementById('id01').style.display='none'" (click)="Cancelar()" class="btn btn-info">Volver</button>
+
+</div>
+
+</div>

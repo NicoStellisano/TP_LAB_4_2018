@@ -1,0 +1,53 @@
+<app-menu></app-menu>
+
+<app-listado-remiseros (cambio)="Actualizar($event)" [listaUsuarios]="listadoParaCompartir"></app-listado-remiseros>
+
+
+
+<!--<button class="btn btn-info" (click)="agregar()" style="width: 100%">Agregar Empleado</button>
+
+<div *ngIf="isvalid">
+  <form [formGroup]="registroForm" (ngSubmit)="Registrar()">
+    <div class="form-group">
+      <h1>Datos de Empleados</h1><br>
+      <div class="form-group">
+        <label>* Campos obligatorios</label>
+        <br>
+        <label>* 5 caracteres mínimo</label><input type="text" class="form-control" [formControl]="usuario" [(ngModel)]="miUsuario.usuario"
+          placeholder="Nombre de usuario">
+        <br>
+        <label>* 5 caracteres mínimo</label>
+        <input type="text" class="form-control" [formControl]="nombre" [(ngModel)]="miUsuario.nombre" placeholder="Nombre" autofocus>
+        <br>
+        <label>* 5 caracteres mínimo</label><input type="text" class="form-control" [formControl]="apellido" [(ngModel)]="miUsuario.apellido"
+          placeholder="Apellido" autofocus>
+        <br>
+        <label>* Campo obligatorio</label><br>Fecha de nacimiento: <input id="date" type="date" [formControl]="nacimiento"
+          [(ngModel)]="miUsuario.fechaNacimiento" class="form-control">
+        <br>
+        <label>* Campo obligatorio</label><br>Sexo:
+        <select [formControl]="sexo" [(ngModel)]="miUsuario.sexo" class="form-control" id="select">
+                <option value="M">Masculino</option>
+                <option value="F">Femenino</option>
+              </select>
+        <br>
+        <label>* 5 caracteres mínimo</label><input type="password" class="form-control" [formControl]="clave" [(ngModel)]="miUsuario.contrasenia"
+          placeholder="Contraseña">
+        <br>
+        <label>* misma contraseña</label><input type="password" class="form-control" [formControl]="copiaClave" [(ngModel)]="claveCopia"
+          placeholder="Repita Contraseña">
+        <br>
+        <div class="row">
+          <div class="col-lg-0 col-md-0 col-sm-0 col-xs-0">
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <button type="submit" id="botonRegistro" class="btn btn-success" style="width: 100%" [disabled]="!registroForm.valid">Registrar</button>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <button class="btn btn-danger" style="width: 100%" (click)="cancelar()">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>-->

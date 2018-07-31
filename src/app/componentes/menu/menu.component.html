@@ -1,0 +1,111 @@
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script src="script.js"></script>
+   </head>
+   <div style="background-color:rgba(176, 255, 242, 0.747);width:60%;display:block;margin:auto">
+      <h1>Remiseria Humberto</h1>
+    </div>
+ <div id='cssmenu' style="left:20%;
+ width:60%;">
+
+ <ul style="bottom:-15px">
+    <li *ngIf="TIPO!=2" class='active'><a  (click)="IR('Principal')">INICIO</a></li>
+    <li *ngIf="TIPO==1"><a  (click)="IR('Remiseros')">Remiseros</a></li>
+    <li *ngIf="TIPO==1"><a  (click)="IR('Vehiculos')">Vehiculos</a></li>
+    <li *ngIf="TIPO==1"><a  (click)="IR('gestorViajes')">Viajes</a></li>
+    <li *ngIf="TIPO==1"><a  (click)="IR('Informes')">Informes</a></li>
+    <li *ngIf="TIPO==1"><a  (click)="IR('Graficos')">Graficos</a></li>
+
+   <li *ngIf="TIPO==2"><a  (click)="IR('Viaje')">Solicitar Viaje</a></li>
+   <li *ngIf="TIPO==2"><a  (click)="IR('gestorViajes')">Mis viajes</a></li>
+ 
+    <li *ngIf="TIPO==3"><a  (click)="IR('gestorViajes')">Viajes</a></li>
+    <li *ngIf="TIPO==3"><a  (click)="IR('Graficos')">Graficos</a></li>
+    <li ><a (click)="salir()">SALIR</a></li>
+
+    <li id="bienvenido" style="float:right;bottom:17px;right:0;height:90px">
+        <img src="{{foto}}" style="height: 45px;width: 45px">
+    Bienvenido <strong>{{nombre}}</strong></li>
+
+ </ul>
+ </div>
+
+ 
+ 
+ 
+ 
+<!-- 
+
+
+
+
+<nav *ngIf="TIPO==1" class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+                                  
+          </button>
+          <a class="navbar-brand" routerLink="/Principal">Inicio</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li><a  (click)="IR('Remiseros')">Remiseros</a></li>
+                <li><a  (click)="IR('Vehiculos')">Vehiculos</a></li>
+                <li><a  (click)="IR('Horario')">Horarios</a></li>
+                <li><a  (click)="IR('gestorViajes')">Viajes</a></li>
+                <li><a  (click)="IR('Informes')">Informes</a></li>
+                <li><a  (click)="IR('Graficos')">Graficos</a></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                  <li><a routerLink="/Login"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
+                </ul>
+        </div>
+      </div>
+  </nav>
+
+  <nav *ngIf="TIPO==2" class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+                                  
+          </button>
+          <a class="navbar-brand" routerLink="/Principal">Inicio</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li><a  (click)="IR('Viaje')">Pedir Viajes</a></li>
+                <li><a  (click)="IR('listaViajes')">Mis viajes</a></li>
+                <li><a  (click)="IR('Encuesta')">Encuestas</a></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                  <li><a routerLink="/Login"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
+                </ul>
+        </div>
+      </div>
+  </nav>
+
+    <nav *ngIf="TIPO==3" class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+                                  
+          </button>
+          <a class="navbar-brand" routerLink="/Principal">Inicio</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li><a  (click)="IR('gestorViajes')">Viajes</a></li>
+                <li><a  (click)="IR('Graficos')">Graficos</a></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                  <li><a routerLink="/Login"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
+                </ul>
+        </div>
+      </div>
+  </nav> -->

@@ -1,0 +1,74 @@
+agm-map {
+    height: 400px;
+}
+.container {
+    padding: 16px;
+    background: rgb(247, 247, 247);
+    border: 5px dashed rgba(147, 184, 189,0.8);
+        width:60%;
+}
+select.form-control:not([size]):not([multiple]) {
+    height: calc(2.45rem + 4px);
+}
+
+/** Styling both forms **/
+#login{
+    padding: 15px;
+    width:60%;
+	background: rgb(247, 247, 247);
+	border: 5px dashed rgba(147, 184, 189,0.8);
+
+}
+h4{
+	font-size: 16px;
+	color: rgb(6, 106, 117);
+	padding: 2px 0 10px 0;
+	font-family: 'FranchiseRegular','Arial Narrow',Arial,sans-serif;
+	font-weight: bold;
+	text-align: center;
+	padding-bottom: 30px;
+}
+
+li{
+    width:65%;
+    display:block;
+    margin:auto;
+    padding:auto;
+    text-align: center;
+   
+}
+.media,.media-body,.media-heading{
+    height:60%;
+}
+h1{
+	font-size: 36px;
+	color: rgb(6, 106, 117);
+	font-family: 'FranchiseRegular','Arial Narrow',Arial,sans-serif;
+	font-weight: bold;
+	text-align: center;
+	padding-bottom: 30px;
+}
+ h1,h4,#pedido{
+    background: -webkit-repeating-linear-gradient(-45deg, 
+	rgb(18, 83, 93) , 
+	rgb(18, 83, 93) 20px, 
+	rgb(64, 111, 118) 20px, 
+	rgb(64, 111, 118) 40px, 
+	rgb(18, 83, 93) 40px);
+	-webkit-text-fill-color: transparent;
+	-webkit-background-clip: text;
+}
+h1,h4,#pedido:after{
+	
+}
+
+
+#pedido{
+    font-size: 36px;
+	color: rgb(6, 106, 117);
+	padding: 2px 0 10px 0;
+	font-family: 'FranchiseRegular','Arial Narrow',Arial,sans-serif;
+	font-weight: bold;
+	text-align: center;
+	padding-bottom: 30px;
+}

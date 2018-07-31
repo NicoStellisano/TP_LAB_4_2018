@@ -1,0 +1,85 @@
+<app-menu></app-menu>
+<br>
+<div class="container" *ngIf="TIPO!=0">
+
+ 
+  <br>
+  <!--Encaragodo-->
+  <div *ngIf="TIPO==1">
+  <ul class="list-group bordesolido">
+    <li class="list-group-item list-group-item-info transparent-style">
+      <a routerLink="/Remiseros">
+        <div class="media" >
+          <!--<div class="media-left">
+            <img src="./assets/imagenes/saladejuegos.png" class="media-object imagenDeMenu">
+          </div>-->
+          <div class="media-body">
+            <h1 class="media-heading">Lista de Empleados</h1>
+          </div>
+      </div>
+      </a>
+    </li>
+    <li class="list-group-item list-group-item-info transparent-style">
+      <a routerLink="/Vehiculos">
+        <div class="media">
+          <div class="media-body">
+            <h1   class="media-heading">Listados de Vehiculos</h1>
+          </div>
+        </div>
+      </a>
+    </li>
+    <li class="list-group-item list-group-item-info transparent-style">
+      <a routerLink="/gestorViajes">
+        <div class="media">
+          <div class="media-body">
+            <h1   class="media-heading">Listados de viajes</h1>
+          </div>
+        </div>
+      </a>
+    </li>
+    <li class="list-group-item list-group-item-info transparent-style">
+      <a routerLink="/Informes">
+        <div class="media">
+          <div class="media-body">
+            <h1   class="media-heading">Informes</h1>
+          </div>
+        </div>
+      </a>
+    </li>
+    <li class="list-group-item list-group-item-info transparent-style">
+      <a routerLink="/Graficos">
+        <div class="media">
+          <div class="media-body">
+            <h1   class="media-heading">Gráficos estadisticos</h1>
+          </div>
+        </div>
+      </a>
+    </li>
+  </ul>
+  </div>
+
+  <!--Remisero-->
+  <div *ngIf="TIPO==3">
+  <ul class="list-group bordesolido">
+    <li class="list-group-item list-group-item-info transparent-style">
+      <a routerLink="/gestorViajes">
+        <div class="media">
+          <div class="media-body">
+            <h1   class="media-heading">Listados de viajes</h1>
+          </div>
+        </div>
+      </a>
+    </li>
+    <li class="list-group-item list-group-item-info transparent-style">
+      <a routerLink="/Graficos">
+        <div class="media">
+          <div class="media-body">
+            <h1   class="media-heading">Gráficos estadisticos</h1>
+          </div>
+        </div>
+      </a>
+    </li>
+  </ul>
+  </div>
+
+</div>

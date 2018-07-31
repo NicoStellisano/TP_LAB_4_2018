@@ -1,0 +1,328 @@
+<app-menu></app-menu>
+
+<ng4-loading-spinner> </ng4-loading-spinner>
+
+
+<br><br>
+  <div class="container" style="min-width:80%">
+      <br>      <br>
+      <div class="row justify-content-center" *ngIf="TIPO!=2" >
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+            <th>Lista de viajes: </th>
+          </div>
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+            <select [(ngModel)]="estadoSeleccion" class="form-control" id="select">
+                <option value="0">Todos</option>
+                <option value="1">Solicitados</option>
+                <option value="2">Cancelados</option>
+                <option value="3">En viaje</option>
+                <option value="4">Finalizados</option>
+            </select>
+          </div>
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+            <input type="date" class="form-control" [(ngModel)]="horarioSeleccion">
+          </div>
+          <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+            <button type="button" class="btn btn-info" (click)="buscar()">Buscar</button>
+          </div>
+        </div>
+
+    <h1>Viajes</h1>
+
+    <table align="center;" style="width: 100%;display: block;margin: auto" class='table table-responsive'>
+      <thead>
+        <tr>
+          <th>Horario</th>
+          <th>Duración</th>
+          <th>Distancia</th>
+          <th>Medio de pago</th>
+          <th>Precio</th>
+          <th>Estado</th>
+          <th>Mensaje</th>
+          <th *ngIf="TIPO!=3">Remisero</th>
+          <th>Vehiculo</th>
+          <th *ngIf="TIPO!=2">Cliente</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let viaje of listaViajes">
+        <tr *ngIf="viaje.estado == 1" style="background-color: rgba(2, 221, 221, 0.856)">
+          <!--Iniciado-->
+          <td>{{viaje.horario}}</td>
+          <td>{{viaje.duracion}}</td>
+          <td>{{viaje.distancia | metrosAKilometros}} km</td>
+          <td>{{viaje.medioDePago}}</td>
+          <td>$ {{viaje.precio}}  </td>
+          <td>Solicitado</td>
+          <td>{{viaje.comodidad}}</td>
+          <td>No asignado</td>
+          <td>No asignado</td>
+          <td *ngIf="TIPO!=2"><img style="width:100px;height:100px" src="{{viaje.FotoCliente}}" /></td>
+          <td><button type="button" style="float:right;color:black;font:bold;" class="btn" (click)="Ver(viaje)">Ver viaje</button></td>
+          <td *ngIf="TIPO==1"><button type="button" class="btn btn-primary" (click)="ListarHorarios(viaje)" onclick="document.getElementById('id02').style.display='block'">Asignar Conductor</button></td>
+          <td *ngIf="TIPO!=3"><button type="button" class="btn btn-danger" (click)="cancelar(viaje)" onclick="document.getElementById('id01').style.display='block'">Cancelar</button></td>
+        </tr>
+    
+          <!--<td><button type="button" class="btn btn-danger" (click)="Cancelar(viaje)">Cancelar</button></td>-->
+        <tr *ngIf="viaje.estado == 3" style="background-color: rgb(212, 224, 32)">
+          <!--En proceso-->
+          <td>{{viaje.horario}}</td>
+          <td>{{viaje.duracion}}</td>
+          <td>{{viaje.distancia | metrosAKilometros}} km</td>
+          <td>{{viaje.medioDePago}}</td>
+          <td>$ {{viaje.precio}}  </td>
+          <td>En viaje</td>
+          <td>{{viaje.comodidad}}</td>
+          <td *ngIf="TIPO!=3"><img style="width:100px;height:100px" src="https://apistellisano.000webhostapp.com/apirestTPFinal/apirestV6-JWT-MW-POO/assets/usuarios/{{viaje.remisero.FotoRemisero}}" /></td>
+          <td><img style="width:100px;height:100px" src="https://apistellisano.000webhostapp.com/apirestTPFinal/apirestV6-JWT-MW-POO/assets/vehiculos/{{viaje.vehiculo.FotoAuto}}" /></td>
+          <td *ngIf="TIPO!=2"><img style="width:100px;height:100px" src="{{viaje.FotoCliente}}" /></td>
+          <td *ngIf="TIPO!=2"><button type="button" class="btn btn-info" (click)="MiViaje(viaje)" onclick="document.getElementById('id03').style.display='block'">Finalizar</button></td>
+          <td *ngIf="TIPO!=2"><button type="button" class="btn btn-danger" (click)="cancelar(viaje)" onclick="document.getElementById('id01').style.display='block'">Cancelar</button></td>
+          <td *ngIf="TIPO==2"></td>
+          <td><button type="button" style="float:right;color:black;font:bold;" class="btn" (click)="Ver(viaje)">Ver viaje</button></td>
+
+        </tr>
+        <tr *ngIf="viaje.estado == 2" style="background-color: rgba(145, 16, 16, 0.801)">
+            <td>{{viaje.horario}}</td>
+            <td>{{viaje.duracion}}</td>
+            <td>{{viaje.distancia | metrosAKilometros}} km</td>
+            <td>{{viaje.medioDePago}}</td>
+            <td>$ {{viaje.precio}}  </td>
+            <td>Cancelado</td>
+            <td>{{viaje.comodidad}}</td>
+            <td  *ngIf="TIPO!=3"></td>
+            <td></td>
+            <td *ngIf="TIPO!=2"><img style="width:100px;height:100px" src="{{viaje.FotoCliente}}" /></td>
+            <td *ngIf="TIPO!=2"></td>
+            <td></td>
+            <td><button type="button" style="float:right;color:black;font:bold;" class="btn" (click)="Ver(viaje)">Ver viaje</button></td>
+        
+           </tr>
+        <tr *ngIf="viaje.estado == 4" style="background-color: rgb(0, 233, 0)">
+          <!--Finalizado-->
+          <td>{{viaje.horario}}</td>
+            <td>{{viaje.duracion}}</td>
+            <td>{{viaje.distancia | metrosAKilometros}} km</td>
+            <td>{{viaje.medioDePago}}</td>
+            <td>$ {{viaje.precio}}  </td>
+            <td>Finalizado</td>
+            <td>{{viaje.comodidad}}</td>
+            <td  *ngIf="TIPO!=3"><img style="width:100px;height:100px" src="http://ost/apirestTPFinal/apirestV6-JWT-MW-POO/assets/usuarios/{{viaje.remisero.FotoRemisero}}" /></td>
+            <td><img style="width:100px;height:100px" src="https://apistellisano.000webhostapp.com/apirestTPFinal/apirestV6-JWT-MW-POO/assets/vehiculos/{{viaje.vehiculo.FotoAuto}}" /></td>
+            <td *ngIf="TIPO!=2"><img style="width:100px;height:100px" src="{{viaje.FotoCliente}}" /></td>
+            <td *ngIf="TIPO!=2"></td>
+            <td></td>
+            <td><button type="button" style="float:right;color:black;font:bold;" class="btn" (click)="Ver(viaje)">Ver viaje</button></td>
+          </tr>
+      </tbody>
+    </table >
+
+    <br>
+    
+    <div id="id01" class="modal">
+      <div class="modal-content">
+        <h3>Motivo de cancelación</h3>
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <input type="text" [(ngModel)]="motivo" class="form-control" placeholder="Ingresa tu motivo">
+          </div>
+          <br><br>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-1">
+          </div>
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-5">
+            <button type="button" onclick="document.getElementById('id01').style.display='none'" (click)="Cancelar()" class="btn btn-success">Cancelar</button>
+          </div>
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-5">
+            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="btn btn-info">Volver</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="id03" class="modal">
+      <div class="modal-content">
+        <h3>Registro de pago</h3>
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+            </div>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+            <select [(ngModel)]="pagook" class="form-control" id="select">
+              <option value="0">Pagado en regla</option>
+              <option value="1">Pagado con otro método del especificado</option>
+              <option value="2">No pagado</option>
+          </select>         
+         </div>
+         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+          </div>
+        </div>
+        <div class="row">        
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <br>
+          </div>
+          </div>
+          <div class="row">        
+              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+              </div>
+              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                  <button type="button" onclick="document.getElementById('id03').style.display='none'" (click)="Finalizar()" class="btn btn-success">Completar pago</button>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                    <button type="button" onclick="document.getElementById('id03').style.display='none'" class="btn btn-info">Volver</button>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                    </div>
+              </div>     
+    
+      </div>
+    </div>
+ 
+      
+
+    </div>
+
+   
+    <div id="id02" class="modal2" >
+      <div class="modal-content2">
+        <h3>Asignar remisero</h3>
+        <div class="row justify-content-center">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h1>Lista de horario: </h1>
+              <table class='table justify-content-left'>
+                <thead>
+                  <tr>
+                    <th>Remisero</th>
+                    <th>Desde</th>
+                    <th>Hasta</th>
+                  </tr>
+                </thead>
+                <tbody style="text-align: left;" *ngFor="let horario of listaHorarios">
+                  <tr style="background-color: rgba(178, 90, 250, 0.822)">
+                    <td><img style="width:100px;height:100px" src="https://apistellisano.000webhostapp.com/apirestTPFinal/apirestV6-JWT-MW-POO/assets/usuarios/{{horario.foto}}" /></td>
+                    <td>{{horario.timeDesde}}</td>
+                    <td>{{horario.timeHasta}} </td>
+                    <td><button type="button" class="btn btn-primary" (click)="Asignar(horario)">Asignar Conductor</button></td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <button type="button" style="width:40%;font-size:20px" onclick="document.getElementById('id02').style.display='none'" class="btn btn-success btn-large" >Volver</button>
+              </div>
+            
+      </div>
+      <br>
+      <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+          </div>
+      </div>
+    </div>
+    <script>
+      // Get the modal
+      var modal = document.getElementById('id01');
+  
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function (event) {
+          modal.style.display = "none";
+        
+      }
+
+         var modal2 = document.getElementById('id02');
+    
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+      if (event.target == modal2) {
+        modal2.style.display = "none";
+      }
+    }
+  
+  </script>
+
+
+
+<!-- 
+</div>
+<div *ngIf="mostrar && TIPO == 3" style="background-color: silver">
+  <agm-map>
+    <agm-direction *ngIf="dir" [origin]="dir.origin" [destination]="dir.destination"></agm-direction>
+  </agm-map>
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-5">
+        <label>Fecha de viaje </label>
+      </div>
+      <div class="col-lg-10 col-md-10 col-sm-10 col-xs-7">
+        <input class="form-control" type="datetime-local" readonly [(ngModel)]="miViaje.horario">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-1 col-md-2 col-sm-2 col-xs-3">
+        <label>Pasajeros: </label>
+      </div>
+      <div class="col-lg-1 col-md-1 col-sm-2 col-xs-9">
+        <input type="number" class="form-control" [(ngModel)]="miViaje.cantidad" readonly placeholder="Ingrese N° de pasajeros">
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-8 col-xs-12">
+        <label class="form-control">Duración {{miViaje.duracion}} minutos</label>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <label class="form-control">Distancia {{miViaje.distancia}} metros</label>
+      </div>
+      <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+        <label class="form-control">Precio {{miViaje.precio}} pesos</label>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-1 col-md-2 col-sm-3 col-xs-6">
+        <label>Medio de pago </label>
+      </div>
+      <div class="col-lg-3 col-md-2 col-sm-3 col-xs-6">
+        <label class="form-control">{{miViaje.medioDePago}}</label>
+      </div>
+      <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+        <input type="string" class="form-control" [(ngModel)]="miViaje.comodidad">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="id01" class="modal">
+  <div class="modal-content">
+    <h3>Motivo de cancelación</h3>
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <input type="text" [(ngModel)]="motivo" class="form-control" placeholder="Ingresa tu motivo">
+      </div>
+      <br><br>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-1">
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-5">
+        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="btn btn-danger">Cancelar</button>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-5">
+        <button type="button" onclick="document.getElementById('id01').style.display='none'" (click)="Cancelar()" [disabled]="motivo.length < 5" class="btn btn-info">Confirmar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+                                       // Get the modal
+                                       var modal = document.getElementById('id01');
+
+                                       // When the user clicks anywhere outside of the modal, close it
+                                       window.onclick = function (event) {
+                                         if (event.target == modal) {
+                                           modal.style.display = "none";
+                                         }
+                                       }
+
+</script>
+
+<div *ngIf="gif">
+  <app-preload-imagen></app-preload-imagen>
+</div> -->

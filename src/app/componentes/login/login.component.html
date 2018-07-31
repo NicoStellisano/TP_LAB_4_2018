@@ -1,0 +1,209 @@
+ 
+  <div  class="fondo" style="min-height:100%;" >
+   
+  <header>
+    <br>
+    <br>
+  </header>
+  <!--<img src="assets/spinner.gif" *ngIf="loading" />-->
+ <!-- Button trigger modal -->
+ <ng4-loading-spinner> </ng4-loading-spinner>
+ 
+
+ 
+ 
+    <section>				
+        <div id="container_demo" >
+            <!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
+            <a class="hiddenanchor" id="toregister"></a>
+            <a class="hiddenanchor" id="tologin"></a>
+            <p *ngIf="mensaje != ''">{{mensaje}}</p>
+            <div id="wrapper">
+                <div id="login" class="animate form">
+                    <form  autocomplete="on" > 
+                        <h1>Iniciar Sesión</h1> 
+                        <p> 
+                            <label for="usuario" class="uname" > E-mail </label>
+                            <input id="usuario" name="usuario" [(ngModel)]="lusuario" required="required" type="email" placeholder="miemail@email.com"/>
+                        </p>
+                        <p> 
+                            <label for="clave" class="youpasswd">Contraseña</label>
+                            <input id="clave" name="clave" [(ngModel)]="lclave" required="required" type="password" placeholder="Clave" /> 
+                        </p>
+                       
+                        <p class="login button"> 
+                        <button class="btn btn-success btn-lg" (click)="Entrar()" >Entrar</button>
+                           
+        </p>
+ 
+        <button style="display:block;padding:auto;margin:auto" class="btn btn-info btn-lg" (click)="Cargar(2)" >Cliente</button><br>
+        <button style="display:block;padding:auto;margin:auto" class="btn btn-info btn-lg" (click)="Cargar(1)" >Encargado</button><br>
+        <button style="display:block;padding:auto;margin:auto" class="btn btn-info btn-lg" (click)="Cargar(3)" >Remisero</button><br>
+ 
+ 
+ 
+ 
+                        <p class="change_link">
+         ¿ Aún no tienes cuenta ?
+          <a href="#toregister" class="to_register">Registrate</a>
+        </p>
+                    </form>
+                </div>
+ 
+                <div id="register" class="animate form" [formGroup]="registroForm" (ngSubmit)="Registrar()">
+                    <form  autocomplete="on" > 
+                            <div class="radio" >
+                                <label ><input [(ngModel)]="tipoUsuario" value="Cliente" type="radio" name="optradioo">Cliente</label>
+                              </div>
+                              <div class="radio" >
+                                <label ><input [(ngModel)]="tipoUsuario" value="Remisero" type="radio" name="optradioo">Remisero</label>
+                              </div>
+                              <div class="radio" >
+                                <label *ngIf="tipoUsuario=='Remisero'"><input (change)="cambiarValidacion()"  type="checkbox"  [(ngModel)]="HasDrive" value="2" name="chk">Tiene Vehiculo</label>
+                              </div>
+                      <h1> Registro de {{tipoUsuario}} </h1> 
+               
+                       
+                     
+                        <p> 
+                            <label for="usernamesignup" class="uname" >Nombre Completo</label>
+                            <input id="usernamesignup" class="form-control" [formControl]="nombre" name="usernamesignup" [(ngModel)]="miUsuario.nombre" required="required" type="text" placeholder="Enrique Martínez" />
+                        </p>
+                       
+                         <label >Sexo</label>
+                         <div class="radio" >
+                             <label ><input [(ngModel)]="miUsuario.sexo"  [formControl]="sexo" type="radio" value="Masculino" name="optradio">Masculino</label>
+                           </div>
+                           <div class="radio" >
+                             <label ><input [(ngModel)]="miUsuario.sexo"  [formControl]="sexo" type="radio" value="Femenino" name="optradio">Femenino</label>
+                           </div>
+                    
+                    <br>
+                        <p> 
+                            <label for="emailsignup" class="youmail"  > E-mail</label>
+                            <input id="emailsignup" (change)="debug()" name="emailsignup" required="required" class="form-control" [formControl]="usuario" [(ngModel)]="miUsuario.usuario" type="text" placeholder="miemail@email.com"/> 
+                        </p>
+                        <br>
+                        <p> 
+                          <label for="date" class="youmail"  >Fecha de nacimiento</label>
+                          <input id="date" name="date" required="required" class="form-control" [formControl]="nacimiento" [(ngModel)]="miUsuario.fechaNacimiento" type="date" placeholder="miemail@email.com"/> 
+                     
+                        <p> 
+                            <label for="passwordsignup" class="youpasswd" >Contraseña</label>
+                            <input id="passwordsignup" name="passwordsignup" required="required" class="form-control" [formControl]="clave" [(ngModel)]="miUsuario.contrasenia" type="password" placeholder="contr1234"/>
+                        </p>
+                        <p> 
+                            <label for="passwordsignup_confirm" class="youpasswd" >Repite la contraseña </label>
+                            <input id="passwordsignup_confirm" name="passwordsignup_confirm" required="required" class="form-control" [formControl]="copiaClave" [(ngModel)]="claveCopia" type="password" placeholder="contr1234"/>
+                        </p>
+                        <br>
+                        
+                        <div class="center">
+                          <file-drop (onFileDrop)="dropped($event)" (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
+                            <span *ngIf="!gif" >Arrastre aquí su foto: {{nombreFoto1}}</span>
+                            <div *ngIf="gif" style="text-align: center"> 
+                            <img src="../../../assets/fotos/loading.gif">
+                            </div>
+                          </file-drop>
+                        </div>
+                        <br>
+                       
+
+                        <div class="center" *ngIf="HasDrive==true">
+                          <h2>Vehículo</h2>                         
+                        <p> 
+                            <label for="marca" class="uname" >Marca</label>
+                            <input id="marca" name="marca" [(ngModel)]="miVehiculo.marca" class="form-control" [formControl]="marca" required="required" type="text" placeholder="Fiat" />
+                        </p>
+                          <br>
+                          <p> 
+                              <label for="modelo" class="uname" >Modelo</label>
+                              <input id="modelo" name="modelo" [(ngModel)]="miVehiculo.modelo" class="form-control" [formControl]="modelo" required="required" type="text" placeholder="600" />
+                          </p>
+                          <br>
+                          <p> 
+                              <label for="patente" class="uname" >Patente</label>
+                              <input id="patente" name="patente" [(ngModel)]="miVehiculo.patente" class="form-control" [formControl]="patente" required="required" type="text" placeholder="ASD-123" />
+                          </p>
+                          <br>
+                          <div class="center">
+                            <file-drop (onFileDrop)="dropped2($event)" (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
+                              <span *ngIf="!gif" >Arrastre foto de su vehículo: {{nombreFoto2}}</span>
+                              <div *ngIf="gif" style="text-align: center"> 
+                              </div>
+                            </file-drop>
+                          </div>
+                      </div>
+                        
+                          <div class="captcha" style="display:block;padding:auto;margin:auto;align-content: center">
+                            <re-captcha style="float:right" (resolved)="resolvedCaptcha($event)" siteKey="6LeoUGcUAAAAAM9n3h-F5BLmCbDJa8DGLTWqYd5R"></re-captcha>
+                          </div>
+                          <br>
+                          <br>
+
+                        <p class="signin button"> 
+                          <br>
+                          <button type="submit" id="botonRegistro" class="btn btn-success" style="width: 100%" [disabled]="!(registroForm.valid && resolved && nombreFoto1 != '')">Registrar</button>
+                        </p>
+                        <p class="change_link">  
+        ¿ Ya registrado ? 
+          <a href="#tologin" class="to_register"> Inicia Sesión </a>
+        </p>
+                    </form>
+                </div>
+    
+            </div>
+        </div>  
+    </section>
+ </div>
+
+ 
+ <!-- 
+ 
+ 
+ <div class="container" >
+  <div class="jumbotron" style="padding:25px;background-color: darkblue;border-radius: 10px">
+    <form action="return true;">
+      <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;text-align: center;color: darkgoldenrod">Inicio de sesión</h1>
+      
+     div style="text-align: center;">
+        <img class="imgcontainer" src="./assets/imagenes/login.png" alt="Avatar" >
+      </div>
+      <div class="container">
+        <p *ngIf="mensaje != ''">{{mensaje}}</p>
+
+        <label><b>Usuario</b></label>
+        <input type="text" placeholder="Usuario"  [(ngModel)]="usuario"  name="uname" required>
+
+        <label><b>Clave</b></label>
+        <input type="password" placeholder="Clave"  [(ngModel)]="clave" name="psw" required>
+            
+        <div style="text-align: center">
+          <button class="loginbtn" (click)="Entrar()" >Ingresar</button>
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+               <button class="btn btn-warning" (click)="Cargar(1)" >Ingresar como encargado</button>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+              <button class="btn btn-warning" (click)="Cargar(2)" >Ingresar como cliente</button>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+              <button class="btn btn-warning" (click)="Cargar(3)" >Ingresar como remisero</button>
+            </div>
+          </div>
+         
+        </div>
+      </div>
+
+      <div class="container" style="text-align: center" >
+        <label>No tiene usuario?</label>
+        <button type="button" class="aceptbtn" routerLink="/Registro" >Registrarse</button>
+      </div>
+     
+    </form>
+  </div>
+</div>
+
+<div *ngIf="gif"> 
+<app-preload-imagen ></app-preload-imagen>
+</div> -->

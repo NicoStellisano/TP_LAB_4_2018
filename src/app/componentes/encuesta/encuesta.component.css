@@ -1,0 +1,254 @@
+
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 110px;
+    text-align: center;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 30%; /* Could be more or less, depending on screen size */
+    background-color: rgba(45, 238, 238, 0.849);
+
+}
+
+.modal2 {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 110px;
+    text-align: center;
+}
+
+/* Modal Content/Box */
+.modal-content2 {
+	background-color: #fefefe;
+	display: block;
+	margin: auto;
+    border: 1px solid #888;
+    width: 50%; /* Could be more or less, depending on screen size */
+    background-color: rgba(45, 238, 238, 0.849);
+	
+}
+
+agm-map {
+    height: 400px;
+}
+.container {
+    background: rgb(247, 247, 247);
+    border: 5px dashed rgba(147, 184, 189,0.8);
+        width:80%;
+}
+select.form-control:not([size]):not([multiple]) {
+    height: calc(3.45rem + 9px);
+}
+
+/** Styling both forms **/
+#login{
+    width:80%;
+	background: rgb(247, 247, 247);
+	border: 5px dashed rgba(147, 184, 189,0.8);
+
+}
+th{
+	font-size: 18px;
+	color: rgb(6, 106, 117);
+	font-family: 'FranchiseRegular','Arial Narrow',Arial,sans-serif;
+	font-weight: bold;
+    padding-bottom: 30px;
+    text-align: center
+}
+
+select.form-control:not([size]):not([multiple]) {
+    height: calc(2.45rem + 6px);
+}
+
+h4{
+	font-size: 24px;
+	color: rgb(248, 251, 252);
+	font-family: 'FranchiseRegular','Arial Narrow',Arial,sans-serif;
+    font-weight: bold;
+    text-align: center
+}
+
+h1{
+	font-size: 56px;
+	color: rgb(6, 106, 117);
+	font-family: 'FranchiseRegular','Arial Narrow',Arial,sans-serif;
+	font-weight: bold;
+	text-align: center;
+	padding-bottom: 30px;
+}
+ h1,h4,#pedido{
+    background: -webkit-repeating-linear-gradient(-45deg, 
+	rgb(18, 83, 93) , 
+	rgb(18, 83, 93) 20px, 
+	rgb(64, 111, 118) 20px, 
+	rgb(64, 111, 118) 40px, 
+	rgb(18, 83, 93) 40px);
+	-webkit-text-fill-color: transparent;
+	-webkit-background-clip: text;
+}
+
+.radio,input,select,textarea{
+    color: rgb(123, 4, 202);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center
+}
+
+input,select{
+    width: 30%;
+    display: block;
+    margin: auto;
+}
+
+
+
+#pedido{
+    font-size: 36px;
+	color: rgb(6, 106, 117);
+	padding: 2px 0 10px 0;
+	font-family: 'FranchiseRegular','Arial Narrow',Arial,sans-serif;
+	font-weight: bold;
+	text-align: center;
+	padding-bottom: 30px;
+}
+input[type=radio]{
+    font-size: 36px;
+text-align: right;
+}
+.radio-inline{
+align-self: right;
+}
+/* 
+form {
+    padding: 10px;
+    background:seashell;
+}
+p{
+    color: red;
+    background-color: black;
+    font-family: Arial, Helvetica, sans-serif
+}
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+
+.loginbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 80%;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+}
+.aceptbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #3664F4;
+    border: none;
+    cursor: pointer;
+}
+/*.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+}*/
+
+/* @media(min-width: 1200px){
+    .imgcontainer {
+        width: 400px;
+        height: 400px;
+        border-radius: 250px; 
+    }
+}
+@media (min-width: 992px ) and (max-width: 1199px){
+    .imgcontainer {
+        width: 400px;
+        height: 400px;
+        border-radius: 250px; 
+    }
+}
+@media (min-width: 768px) and (max-width: 991px){
+    .imgcontainer {
+        width: 400px;
+        height: 400px;
+        border-radius: 250px; 
+    }
+}
+@media (max-width: 767px) {
+    .imgcontainer {
+        width: 250px;
+        height: 250px;
+        border-radius: 250px; 
+    }
+}
+@media (max-width: 480px){
+    .imgcontainer {
+        width: 200px;
+        height: 200px;
+        border-radius: 250px; 
+    }
+    p{
+    color: red;
+    background-color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px
+    }
+}
+.container {
+    padding: 16px;
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens 
+@media screen and (max-width: 300px) {
+    span.psw {
+       display: block;
+       float: none;
+    }
+    .cancelbtn {
+       width: 100%;
+    }
+} 
+*/

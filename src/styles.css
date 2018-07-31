@@ -1,0 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+
+body {
+    background-image: url("https://www.fotosdeciudades.com/1920x1080/obelisco-de-buenos-aires.jpg");
+    background-repeat:no-repeat;
+    background-position:center;
+    background-attachment:fixed;
+    background-size: cover;
+
+}

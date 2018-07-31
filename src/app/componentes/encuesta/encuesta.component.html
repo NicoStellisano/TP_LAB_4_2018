@@ -1,0 +1,69 @@
+<app-menu></app-menu>
+<ng4-loading-spinner> </ng4-loading-spinner>
+
+<div class="container">
+      <div style="text-align: center">
+        <h1>Encuesta</h1>
+      </div>
+      <div class="container-fluid">
+        <h4>¿Cómo fué su viaje?</h4>
+        <div class="radio">
+          <label class="radio-inline"><input  type="radio"  value="Malo" [(ngModel)]="miEncuesta.pregunta1" name="optgusto">Malo</label>
+          <label class="radio-inline"><input  type="radio"  value="Normal" [(ngModel)]="miEncuesta.pregunta1" name="optgusto">Normal</label>
+          <label class="radio-inline"><input  type="radio"  value="Bueno" [(ngModel)]="miEncuesta.pregunta1" name="optgusto">Bueno</label>
+        </div>
+        <h4>¿Se cumplió la ruta indicada?</h4>
+        <div class="radio">
+          <label class="radio-inline"><input  type="radio"  value="Si" [(ngModel)]="miEncuesta.pregunta2" name="optremisero">Si</label>
+          <label class="radio-inline"><input  type="radio"  value="No" [(ngModel)]="miEncuesta.pregunta2" name="optremisero">No</label>
+          <label class="radio-inline"><input  type="radio"  value="Indiqué otra mejor" [(ngModel)]="miEncuesta.pregunta2" name="optremisero">Indiqué otra</label>
+        </div>
+        <h4>¿Cuál fue la puntualidad del vehículo?</h4>
+        <div class="radio">
+          <label class="radio-inline"><input  type="radio"  value="Terrible" [(ngModel)]="miEncuesta.pregunta3" name="opthorario">Terrible</label>
+          <label class="radio-inline"><input  type="radio"  value="Algo tarde" [(ngModel)]="miEncuesta.pregunta3" name="opthorario">Algo tarde</label>
+          <label class="radio-inline"><input  type="radio"  value="Puntual" [(ngModel)]="miEncuesta.pregunta3" name="opthorario">Puntual</label>
+        </div>
+        <h4>¿En qué condición estaba el vehículo?</h4>
+        <div class="radio">
+          <label class="radio-inline"><input type="radio"  value="Mala"  [(ngModel)]="miEncuesta.pregunta4" name="opthorario3">Mala</label>
+          <label class="radio-inline"><input type="radio"  value="Aceptable" [(ngModel)]="miEncuesta.pregunta4" name="opthorario3">Aceptable</label>
+          <label class="radio-inline"><input type="radio"  value="Excelente" [(ngModel)]="miEncuesta.pregunta4" name="opthorario3">Excelente</label>
+        </div>
+        <h4>Destaque lo bueno de nuestra página web</h4>
+        <div class="radio">
+          <label class="radio-inline"><input (change)="cambiarWeb()" [(ngModel)]="respuesta51" type="checkbox">Agradable</label>
+          <label class="radio-inline"><input (change)="cambiarWeb()" [(ngModel)]="respuesta52" type="checkbox">Cumple con su objetivo</label>
+        </div>
+        <h4>¿A quiénes nos recomendaría?</h4>
+        <div class="radio">
+          <select [(ngModel)]="miEncuesta.pregunta6" class="form-control">
+                <option value="Nadie">Nadie</option>
+                <option value="Conocidos">Conocidos</option>
+                <option value="Todos">Todos</option>
+          </select>
+        </div>
+        <h4>Puntúenos por favor</h4>
+        <select [(ngModel)]="miEncuesta.pregunta7" class="form-control" id="select">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+          </select>
+        <h4>Puede ingresar sugerencias aquí</h4>
+        <textarea style="width:60%;display: block;margin: auto" [(ngModel)]="miEncuesta.pregunta8" class="form-control" placeholder="Ingrese su opinion">
+        </textarea>
+      </div>
+      <br>
+      <div style="text-align: center">
+        <button class="btn btn-success" (click)="enviar()">Enviar encuesta</button>
+      </div>
+      <br>
+</div>
+

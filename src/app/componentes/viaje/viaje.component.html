@@ -1,0 +1,125 @@
+<app-menu></app-menu>
+<ng4-loading-spinner> </ng4-loading-spinner>
+<br>
+<br>
+<div style="text-align: center" *ngIf="modificar && TIPO==2">
+  <button type="button" style="width:40%;font-size:20px" class="btn btn-success btn-large" (click)="Nuevo()">Nuevo Viaje</button>
+</div>
+<br>
+<div class="container" id="login" *ngIf="!modificar">
+    <p id="pedido">Solicitar Viaje</p>
+
+  <div class="row">
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
+      <h4>Origen</h4>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-10">
+        <label for="inputEmail4">Localidad</label>
+      <input type="text" class="form-control" [(ngModel)]="localidadDesde" >
+    </div>
+    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+        <label for="inputEmail4">Calle</label>
+      <input type="text" class="form-control" [(ngModel)]="calleDesde" >
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+        <label for="inputEmail4">N°</label>
+      <input type="number" class="form-control" [(ngModel)]="numeroDesde">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+      <h4>Destino</h4>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-10">
+        <label for="inputEmail4">Localidad</label>
+      <input type="text" class="form-control" [(ngModel)]="localidadHasta">
+    </div>
+    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-9">
+        <label for="inputEmail4">Calle</label>
+      <input type="text" class="form-control" [(ngModel)]="calleHasta">
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
+        <label for="inputEmail4">N°</label>
+      <input type="number" class="form-control" [(ngModel)]="numeroHasta" >
+    </div>
+  </div>
+  <div style="text-align: center">
+    <button type="button" class="btn btn-success btn-large" (click)="Trazar()">Ver Ruta</button>
+  </div>
+</div>
+<br>
+
+
+
+<br>
+<div class="container" id="map" style="width:60%" *ngIf="ruta || modificar" >
+  <agm-map>
+    <agm-direction *ngIf="dir" [origin]="dir.origin" [destination]="dir.destination"></agm-direction>
+  </agm-map>
+    <br>
+    <div class="row">
+       <div class="col-lg-2 col-md-2 col-sm-2 col-xs-5">
+        <label>Horario de viaje</label>   
+          </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-10">
+          <label for="inputEmail4">Hora</label>
+        <input type="text"  [disabled]="estado!=1 || TIPO!=2 ? 'disabled' : null" class="form-control" (change)=hora() [(ngModel)]="horas">
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-9">
+          <label for="inputEmail4">Minutos</label>
+        <input type="text"  [disabled]="estado!=1 || TIPO!=2 ? 'disabled' : null" class="form-control" (change)=min() [(ngModel)]="minutos">
+      </div>
+     </div>
+      <br>
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
+        <label>Pasajeros: </label>
+      </div>
+      <div class="col-lg-1 col-md-1 col-sm-2 col-xs-9">
+        <input type="number"  [disabled]="estado!=1 || TIPO!=2 || TIPO!=2 ? 'disabled' : null" class="form-control" (change)="cantChange()" [(ngModel)]="cant" min="1" max="4" placeholder="Ingrese N° de pasajeros">
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+        <label class="form-control">Duración: {{duracion}} minutos</label>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <label class="form-control">Distancia: {{distancia | metrosAKilometros}} km</label>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <label class="form-control">Precio: $ {{precio}}</label>
+      </div>
+      <!--<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+        <label class="form-control">Precio: $ {{precio}}</label>
+      </div>-->
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <label>Medio de pago </label>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <select [(ngModel)]="medioDePago"  [disabled]="estado!=1 || TIPO!=2 ? 'disabled' : null" class="form-control" >
+            <option value="Efectivo">Efectivo</option>
+            <option value="A pagar">A pagar</option>
+        </select>
+      </div>
+      <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+        <input type="string"  [disabled]="estado!=1 || TIPO!=2 ? 'disabled' : null" class="form-control" [(ngModel)]="comodidad" placeholder="Ingrese sugerencia para su viaje">
+      </div>
+    </div>
+    <br>
+    <div *ngIf="!captchConfirm && (estado==1 || estado=='null') && TIPO==2" style="text-align: center">
+      <img style="width: 250px;height: 150px" src="{{captcha.img}}"><br>
+      <br>
+      <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+      <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+      <input type="string" class="form-control" [(ngModel)]="captch" placeholder="¿Qué vé? (Simple respuesta)">
+      </div>
+      <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+      <br><br>
+      <button type="button" class="btn btn-success btn-large" (click)="confirmarCaptcha()">Confirmar Captcha</button>
+    </div>
+    <br>
+    <div *ngIf="captchConfirm" style="text-align: center">
+      <button type="button" class="btn btn-primary" (click)="Crearviaje()">Confirmar Viaje</button>
+    </div>
+</div>

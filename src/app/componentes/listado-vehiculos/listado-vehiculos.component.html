@@ -1,0 +1,40 @@
+<ng4-loading-spinner> </ng4-loading-spinner>
+
+<h1>Vehiculos </h1>
+<table class='table table-hover table-fixed'>
+  <thead>
+    <tr>
+      <th>Modelo</th>
+      <th>Marca</th>
+      <th>Patente</th>
+      <th>Estado</th>
+      <th>Foto</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let vehiculo of listaVehiculo" >
+    <tr *ngIf="vehiculo.estado == 1" style="background-color: green">
+      <td>{{vehiculo.modelo}} </td> 
+      <td>{{vehiculo.marca}} </td>
+      <td>{{vehiculo.patente}}</td>
+      <td>Disponible</td>
+      <td><img  style="width:100px;height:100px" class='fotoGrilla'  src="https://apistellisano.000webhostapp.com/apirestTPFinal/apirestV6-JWT-MW-POO/assets/vehiculos/{{vehiculo.foto}}" /></td>
+      <td><button class="btn btn-danger" (click)="Desabilitar(vehiculo.id)" style="width: 100%">Desabilitar</button></td>
+    </tr> 
+    <tr *ngIf="vehiculo.estado == 2" style="background-color: orangered">
+      <td>{{vehiculo.modelo}} </td> 
+      <td>{{vehiculo.marca}} </td>
+      <td>{{vehiculo.patente}}</td>
+      <td>No disponible</td>
+      <td><img  style="width:100px;height:100px" class='fotoGrilla'  src="https://apistellisano.000webhostapp.com/apirestTPFinal/apirestV6-JWT-MW-POO/assets/vehiculos/{{vehiculo.foto}}" /></td>
+      <td><button class="btn btn-success" (click)="Habilitar(vehiculo.id)" style="width: 100%">Habilitar</button></td>
+    </tr> 
+    <!--<tr *ngIf="usuario.habilitado == 0" style="background-color: red">
+      <td>{{usuario.legajo}} </td> 
+      <td>{{usuario.nombre}} </td>
+      <td>{{usuario.apellido}}</td>
+      <td>{{usuario.fechaNacimiento}}</td>
+      <td>{{usuario.sexo}}</td>
+      <td><button class="btn btn-success" (click)="Habilitar(usuario.legajo)" style="width: 100%">Habilitar Empleado</button></td>
+    </tr>     -->
+  </tbody>
+</table>

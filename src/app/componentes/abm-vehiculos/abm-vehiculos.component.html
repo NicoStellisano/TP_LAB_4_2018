@@ -1,0 +1,65 @@
+<app-menu></app-menu>
+<div class="container">
+<app-listado-vehiculos (cambio)="Actualizar($event)" [listaVehiculo]="listadoParaCompartir"></app-listado-vehiculos>
+
+<button *ngIf="!isvalid" class="btn btn-info" (click)="agregar()" style="width: 100%">Agregar Vehículo</button>
+
+<div *ngIf="gif2"> 
+<app-preload-imagen ></app-preload-imagen>
+</div>
+
+<div *ngIf="isvalid">
+  <form [formGroup]="registroForm" (ngSubmit)="Registrar()">
+    <div class="form-group">
+      <h1>Datos del Vehiculo</h1><br>
+      <div class="form-group">
+        <!--<img src="" id="fotoPrevia" class="img-thumbnail">-->
+        <br>
+        <h4>Marca</h4><input type="text" class="form-control" [formControl]="marca" [(ngModel)]="miVehiculo.marca"
+          >
+        <br>
+        <h4>Modelo</h4><input type="text" class="form-control" [formControl]="modelo" [(ngModel)]="miVehiculo.modelo"
+        >
+        <br>
+        <h4>Patente</h4><input type="text" class="form-control" [formControl]="patente" [(ngModel)]="miVehiculo.patente"
+          >
+        <br>
+        <div class="center">
+          <file-drop (onFileDrop)="dropped($event)" (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
+            <span *ngIf="!gif" >Arrastre aquí la foto de su vehiculo: {{nombreFoto1}}</span>
+                  <div *ngIf="gif" style="text-align: center"> 
+                  </div>
+          </file-drop>
+          <!--<div class="upload-table">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                </tr>
+              </thead>
+              <tbody class="upload-name-style">
+                <tr *ngFor="let item of files; let i=index">
+                  <td><strong>{{ item.relativePath }}</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>-->
+        </div>
+        <br>
+      
+
+        <div class="row">
+          <div class="col-lg-0 col-md-0 col-sm-0 col-xs-0">
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <button type="submit" id="botonRegistro" class="btn btn-success" style="width: 100%" [disabled]="!(registroForm.valid && file!=null )">Registrar</button>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <button class="btn btn-danger" style="width: 100%" (click)="cancelar()">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+</div>
