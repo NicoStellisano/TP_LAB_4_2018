@@ -61,14 +61,11 @@
        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-5">
         <label>Horario de viaje</label>   
           </div>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-10">
-          <label for="inputEmail4">Hora</label>
-        <input type="text"  [disabled]="estado!=1 || TIPO!=2 ? 'disabled' : null" class="form-control" (change)=hora() [(ngModel)]="horas">
-      </div>
-      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-9">
-          <label for="inputEmail4">Minutos</label>
-        <input type="text"  [disabled]="estado!=1 || TIPO!=2 ? 'disabled' : null" class="form-control" (change)=min() [(ngModel)]="minutos">
-      </div>
+          <div class="col-lg-10 col-md-10 col-sm-10 col-xs-7">
+            <input class="form-control" type="datetime-local" [(ngModel)]="horario" id="party-time"
+            name="party-time" value="{{horario}}"
+            min="{{mini}}">
+          </div>
      </div>
       <br>
     <div class="row">

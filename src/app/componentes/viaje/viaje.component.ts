@@ -64,7 +64,7 @@ export class ViajeComponent implements OnInit {
   duracion: number = 1;
   distancia: number = 0;
   horarioOpts;
-  horario:Date;
+  horario:string;
   precio: number = 0;
   cant: number = 1
   medioDePago: string = "Efectivo";
@@ -76,6 +76,7 @@ export class ViajeComponent implements OnInit {
  TIPO:number;
  estado;
  dia;
+ mini:string;
   //private exponentialStrength: ExponentialStrengthPipe; 
 
   dir = undefined;
@@ -110,10 +111,6 @@ hora()
   this.horas=new Date().getHours().toString();
   else if(this.horas >= new Date().getHours().toString())
   {
-
-  }else if(parseInt(this.horas)==0)
-  {
-    this.minutos="00";
   }
   else{
     this.horas=new Date().getHours().toString();
@@ -206,16 +203,24 @@ hora()
     }
   }
   Crearviaje() {
-    if(this.horas!="00" && this.minutos!="00")
+    if(this.horas!="00" || this.minutos!="00")
     {
       this.spinnerService.show();
 
-
+      if(this.horario=="")
+      {
+        swal({
+          title: "Elija un horario correcto",
+          icon: "warning",
+        });
+        this.spinnerService.hide();
+        return;
+      }
     
     if(this.modificar)
     {
-
-      this.miViaje.horario=new Date().toISOString().split('T')[0]+' '+this.horas+':'+this.minutos;
+debugger;
+      this.miViaje.horario=this.horario.replace('T',' ');/* new Date().toISOString().split('T')[0]+' '+this.horas+':'+this.minutos; */
       this.miViaje.distancia=this.distancia;
       this.miViaje.duracion=this.duracion;
       this.miViaje.precio=this.precio;
@@ -230,7 +235,7 @@ hora()
         this.miViaje.distancia = this.distancia;
         this.miViaje.duracion = this.duracion;
         debugger;
-        this.miViaje.horario=new Date().toISOString().split('T')[0]+' '+this.horas+':'+this.minutos;
+        this.miViaje.horario=this.horario.replace('T',' ');
         this.miViaje.latDesde = this.latDesde;
         this.miViaje.latHasta = this.latHasta;
         this.miViaje.legajoCliente = this.legajo;
@@ -300,7 +305,7 @@ hora()
       });
       this.modificar=false;
       localStorage.removeItem('modificarViaje');
-      this.router.navigate(['/listaViajes']);
+      this.router.navigate(['/gestorViajes']);
     }, 3000);
   }
   ngOnInit() {
@@ -314,13 +319,16 @@ this.modificar=false;
      this.miViaje = new Viaje(viaje.id, null, null, viaje.legajoCliente, viaje.latDesde, viaje.latHasta, viaje.lngDesde, viaje.lngHasta, viaje.duracion, viaje.distancia, viaje.precio, viaje.cantidad
       , viaje.comodidad, viaje.medioDePago, viaje.estado, viaje.horario,viaje.FotoCliente);
       debugger;
-      this.horas=new Date(this.miViaje.horario.toString().replace('T',' ')).getHours().toString();
+/*       this.horas=new Date(this.miViaje.horario.toString().replace('T',' ')).getHours().toString();
       this.minutos=new Date(this.miViaje.horario.toString().replace('T',' ')).getMinutes().toString();
       if(this.minutos.length==1)
         this.minutos='0'+this.minutos;
       if(this.horas.length==1)
-        this.horas='0'+this.horas;
-
+        this.horas='0'+this.horas; */
+        this.horario = viaje.horario.replace(' ','T');
+        let min= new Date(new Date((new Date().getTime()-10800000)).toISOString().split('.')[0]);
+        min.setHours(0);
+        this.mini = new Date(min).toISOString().split('.')[0];
       this.distancia = this.miViaje.distancia;
       this.duracion = this.miViaje.duracion;
       this.precio = this.miViaje.precio;
@@ -331,10 +339,14 @@ this.modificar=false;
 
     }else{
       this.estado=1;
-      this.horas=new Date().getHours().toString();
+ /*      this.horas=new Date().getHours().toString();
     this.minutos=(new Date().getMinutes()+5).toString();
     this.min();
-    this.hora();
+    this.hora(); */
+    this.horario = new Date((new Date().getTime()-10800000)).toISOString().split('.')[0];
+let min= new Date(this.horario);
+min.setHours(0);
+this.mini = new Date(min).toISOString().split('.')[0];
     this.localidadDesde = "Temperley";
     this.calleDesde = "Riglos";
     this.numeroDesde = "609";
